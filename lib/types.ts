@@ -35,7 +35,13 @@ export type DataItem = {
     pubDate?: number | string | Date;
     link?: string;
     category?: string[];
-    author?: string | { name: string }[];
+    author?:
+        | string
+        | {
+              name: string;
+              url?: string;
+              avatar?: string;
+          }[];
     doi?: string;
     guid?: string;
     id?: string;
@@ -155,7 +161,18 @@ interface RouteItem {
     /**
      * The description of the route parameters
      */
-    parameters?: Record<string, string>;
+    parameters?: Record<
+        string,
+        | string
+        | {
+              description: string;
+              default?: string;
+              options?: {
+                  value: string;
+                  label: string;
+              }[];
+          }
+    >;
 
     /**
      * Hints and additional explanations for users using this route, it will be appended after the route component, supports markdown
